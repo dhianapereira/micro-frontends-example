@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
@@ -5,8 +6,13 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text("login")),
+    return Scaffold(
+      body: Center(
+        child: TextButton(
+          child: const Text("Login"),
+          onPressed: () => EventBus.emit(EventType.AUTH_SUCCESS),
+        ),
+      ),
     );
   }
 }

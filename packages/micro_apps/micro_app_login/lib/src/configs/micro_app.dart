@@ -9,10 +9,13 @@ class MicroAppLogin implements MicroApp {
   @override
   Map<String, WidgetBuilderArgs> get routes {
     return {
-      '/login': (context, args) => const LoginPage(),
+      '/login': (_, __) => const LoginPage(),
     };
   }
 
   @override
-  void Function() get injectionsRegister => throw UnimplementedError();
+  void Function() get injectionsRegister => () {};
+
+  @override
+  void Function() get registerListener => () {};
 }

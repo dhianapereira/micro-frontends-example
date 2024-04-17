@@ -13,6 +13,7 @@ class AppWidget extends StatelessWidget {
   AppWidget(this._baseApp, {super.key}) {
     _baseApp.registerRoutes();
     _baseApp.registerInjections();
+    _baseApp.registerListeners();
   }
 
   @override
