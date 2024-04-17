@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:micro_app_login/micro_app_login.dart';
 
 class BaseAppImpl extends BaseApp {
   @override
@@ -6,6 +7,6 @@ class BaseAppImpl extends BaseApp {
 
   @override
   List<MicroApp> get microApps {
-    return [];
+    return [MicroAppLogin()];
   }
 }
