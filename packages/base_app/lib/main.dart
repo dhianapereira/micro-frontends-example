@@ -11,7 +11,8 @@ void main() {
 class AppWidget extends StatelessWidget {
   final BaseApp _baseApp;
   AppWidget(this._baseApp, {super.key}) {
-    _baseApp.registerRouters();
+    _baseApp.registerRoutes();
+    _baseApp.registerInjections();
   }
 
   @override
