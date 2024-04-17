@@ -1,5 +1,5 @@
-import 'package:core/src/micro_app.dart';
-import 'package:core/src/utils.dart';
+import 'package:core/abstractions/src/micro_app.dart';
+import 'package:core/abstractions/src/utils.dart';
 import 'package:flutter/material.dart';
 
 abstract class BaseApp {
