@@ -18,6 +18,14 @@ abstract class BaseApp {
     }
   }
 
+  void registerInjections() {
+    if (microApps.isNotEmpty) {
+      for (MicroApp microApp in microApps) {
+        microApp.injectionsRegister();
+      }
+    }
+  }
+
   Route<dynamic>? generateRoute(RouteSettings settings) {
     var routerName = settings.name;
     var routerArgs = settings.arguments;

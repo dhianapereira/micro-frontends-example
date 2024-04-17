@@ -12,4 +12,7 @@ class MicroAppLogin implements MicroApp {
       '/login': (context, args) => const LoginPage(),
     };
   }
+
+  @override
+  void Function() get injectionsRegister => throw UnimplementedError();
 }
