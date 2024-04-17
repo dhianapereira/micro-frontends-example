@@ -10,12 +10,12 @@ void main() {
 
 class AppWidget extends StatelessWidget {
   final BaseApp _baseApp;
-  const AppWidget(this._baseApp, {super.key});
+  AppWidget(this._baseApp, {super.key}) {
+    _baseApp.registerRouters();
+  }
 
   @override
   Widget build(BuildContext context) {
-    _baseApp.registerRouters();
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Micro Frontends',
