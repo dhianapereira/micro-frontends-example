@@ -1,9 +1,22 @@
 name: micro_frontends_example
 
+ide:
+  intellij:
+    enabled: false
+
 packages:
   - packages/**
 
 scripts:
+  clean-and-bs:
+    description: Clean and then run bootstrap
+    run: |
+      echo "Cleaning the workspace..."
+      melos clean
+
+      echo "Running bootstrap..."
+      melos bootstrap
+
   android-wifi:
     description: Connect an Android device via Wifi
     run: |
