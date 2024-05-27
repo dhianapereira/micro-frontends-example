@@ -1,5 +1,4 @@
-import 'package:core/abstractions/src/micro_app.dart';
-import 'package:core/abstractions/src/utils.dart';
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 abstract class BaseApp {
@@ -8,6 +7,18 @@ abstract class BaseApp {
   Map<String, WidgetBuilderArgs> get baseRoutes;
 
   final Map<String, WidgetBuilderArgs> routes = {};
+
+  I18n get i18n;
+
+  void registerI18n() {
+    Translator.addTexts(i18n.packageName, i18n.texts);
+
+    if (microApps.isNotEmpty) {
+      for (MicroApp microApp in microApps) {
+        Translator.addTexts(microApp.i18n.packageName, microApp.i18n.texts);
+      }
+    }
+  }
 
   void registerRoutes() {
     if (baseRoutes.isNotEmpty) routes.addAll(baseRoutes);

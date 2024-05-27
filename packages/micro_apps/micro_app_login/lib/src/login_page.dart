@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:micro_app_login/src/configs/translator.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -9,7 +10,7 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: TextButton(
-          child: const Text('Login'),
+          child: Text(MicroAppLoginTranslator.translate(key: 'login')),
           onPressed: () => EventBus.emit(EventType.authSuccess),
         ),
       ),
