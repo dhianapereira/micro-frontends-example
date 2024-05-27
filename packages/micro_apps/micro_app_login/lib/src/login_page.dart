@@ -9,8 +9,8 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: TextButton(
-          child: const Text("Login"),
-          onPressed: () => EventBus.emit(EventType.AUTH_SUCCESS),
+          child: const Text('Login'),
+          onPressed: () => EventBus.emit(EventType.authSuccess),
         ),
       ),
     );

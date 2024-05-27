@@ -1,3 +1,3 @@
 enum EventType {
-  AUTH_SUCCESS,
+  authSuccess,
 }

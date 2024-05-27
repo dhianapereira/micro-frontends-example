@@ -9,9 +9,9 @@ class EventBus {
 
   final _bus = StreamController.broadcast();
 
-  static emit(EventType event) {
+  static void emit(EventType event) {
     _singleton._bus.sink.add(event);
   }
 
-  static get listen => _singleton._bus.stream.listen;
+  static StreamEventBus get listen => _singleton._bus.stream.listen;
 }
