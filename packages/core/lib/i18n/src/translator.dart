@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show SynchronousFuture;
 
@@ -68,11 +67,13 @@ class Translator {
 class TranslatorDelegate extends LocalizationsDelegate<Translator> {
   const TranslatorDelegate();
 
+  static const _defaultLocale = Locale('pt', 'BR');
+
   ///When adding a new language do not forget
   ///to add the new Locale in [supportedLocales]
   static List<Locale> get supportedLocales {
     return const <Locale>[
-      Locale('pt', 'BR'),
+      _defaultLocale,
       Locale('en'),
     ];
   }
@@ -91,7 +92,9 @@ class TranslatorDelegate extends LocalizationsDelegate<Translator> {
 
   @override
   Future<Translator> load(Locale locale) {
-    return SynchronousFuture<Translator>(Translator(locale));
+    return SynchronousFuture<Translator>(
+      Translator(isSupported(locale) ? locale : _defaultLocale),
+    );
   }
 
   @override
