@@ -1,8 +1,10 @@
-# melos_managed_dependency_overrides: core,dependencies,micro_app_login
+# melos_managed_dependency_overrides: core,dependencies,micro_app_home,micro_app_login
 dependency_overrides:
   core:
     path: ../core
   dependencies:
     path: ../dependencies
+  micro_app_home:
+    path: ../micro_apps/micro_app_home
   micro_app_login:
     path: ../micro_apps/micro_app_login

@@ -1,5 +1,6 @@
 import 'package:base_app/src/configs/i18n.dart';
 import 'package:core/core.dart';
+import 'package:micro_app_home/micro_app_home.dart';
 import 'package:micro_app_login/micro_app_login.dart';
 
 class BaseAppImpl extends BaseApp {
@@ -8,7 +9,10 @@ class BaseAppImpl extends BaseApp {
 
   @override
   List<MicroApp> get microApps {
-    return [MicroAppLogin()];
+    return [
+      MicroAppLogin(),
+      MicroAppHome(),
+    ];
   }
 
   @override

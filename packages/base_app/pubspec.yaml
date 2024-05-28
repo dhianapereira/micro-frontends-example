@@ -17,6 +17,8 @@ dependencies:
     path: ../core
   micro_app_login:
     path: ../micro_apps/micro_app_login
+  micro_app_home:
+    path: ../micro_apps/micro_app_home
 
 dev_dependencies:
   flutter_test:

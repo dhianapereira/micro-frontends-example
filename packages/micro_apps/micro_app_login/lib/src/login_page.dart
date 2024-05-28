@@ -10,8 +10,15 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: TextButton(
-          child: Text(MicroAppLoginTranslator.translate(key: 'login')),
-          onPressed: () => EventBus.emit(EventType.authSuccess),
+          style: TextButton.styleFrom(backgroundColor: Colors.blue),
+          child: Text(
+            MicroAppLoginTranslator.translate(key: 'login'),
+            style: const TextStyle(color: Colors.white),
+          ),
+          onPressed: () {
+            EventBus.emit(EventType.authSuccess);
+            navigatorKey.currentState?.pushReplacementNamed('/home');
+          },
         ),
       ),
     );
