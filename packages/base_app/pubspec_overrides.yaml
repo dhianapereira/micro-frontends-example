@@ -1,5 +1,7 @@
-# melos_managed_dependency_overrides: core,dependencies,micro_app_home,micro_app_login
+# melos_managed_dependency_overrides: commons,core,dependencies,micro_app_home,micro_app_login
 dependency_overrides:
+  commons:
+    path: ../commons
   core:
     path: ../core
   dependencies:

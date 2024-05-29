@@ -10,6 +10,6 @@ class MicroAppLoginI18n extends I18n {
   @override
   final Map<Locale, Map<String, String>> texts = {
     const Locale('pt', 'BR'): {'login': 'Entrar'},
-    const Locale('en'): {'login': 'Login'},
+    const Locale('en', 'US'): {'login': 'Login'},
   };
 }

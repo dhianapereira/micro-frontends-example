@@ -5,6 +5,6 @@ abstract class MicroApp {
   String get microAppName;
   Map<String, WidgetBuilderArgs> get routes;
   I18n get i18n;
-  void Function() get injectionsRegister;
+  Future<void> injectionsRegister();
   void Function() get registerListener;
 }

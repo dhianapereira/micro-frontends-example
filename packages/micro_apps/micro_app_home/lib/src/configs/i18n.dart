@@ -10,6 +10,6 @@ class MicroAppHomeI18n extends I18n {
   @override
   final Map<Locale, Map<String, String>> texts = {
     const Locale('pt', 'BR'): {'greetings': 'Olá, %s'},
-    const Locale('en'): {'greetings': 'Hello, %s'},
+    const Locale('en', 'US'): {'greetings': 'Hello, %s'},
   };
 }

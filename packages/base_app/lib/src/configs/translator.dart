@@ -1,5 +1,6 @@
 import 'package:base_app/src/configs/constants.dart';
 import 'package:core/core.dart';
+import 'package:dependencies/dependencies.dart';
 
 class BaseAppTranslator {
   BaseAppTranslator._();
@@ -8,7 +9,7 @@ class BaseAppTranslator {
     final context = navigatorKey.currentContext;
     if (context == null) return key;
 
-    return Translator.of(context).translate(
+    return GetIt.I<Translator>().translate(
       key: key,
       packageName: Constants.packageName,
       args: args,

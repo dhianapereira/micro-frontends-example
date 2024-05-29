@@ -15,7 +15,7 @@ class MicroAppHome implements MicroApp {
   }
 
   @override
-  void Function() get injectionsRegister => () {};
+  Future<void> injectionsRegister() async {}
 
   @override
   void Function() get registerListener => () {};

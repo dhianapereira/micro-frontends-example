@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:dependencies/dependencies.dart';
 import 'package:micro_app_home/src/configs/constants.dart';
 
 class MicroAppHomeTranslator {
@@ -8,7 +9,7 @@ class MicroAppHomeTranslator {
     final context = navigatorKey.currentContext;
     if (context == null) return key;
 
-    return Translator.of(context).translate(
+    return GetIt.I<Translator>().translate(
       key: key,
       packageName: Constants.microAppName,
       args: args,

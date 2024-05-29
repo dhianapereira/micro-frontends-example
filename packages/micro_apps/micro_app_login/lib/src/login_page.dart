@@ -1,3 +1,4 @@
+import 'package:commons/commons.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:micro_app_login/src/configs/translator.dart';
@@ -11,9 +12,9 @@ class LoginPage extends StatelessWidget {
       body: Center(
         child: TextButton(
           style: TextButton.styleFrom(backgroundColor: Colors.blue),
-          child: Text(
-            MicroAppLoginTranslator.translate(key: 'login'),
-            style: const TextStyle(color: Colors.white),
+          child: TextWidget(
+            translate: () => MicroAppLoginTranslator.translate(key: 'login'),
+            color: Colors.white,
           ),
           onPressed: () {
             EventBus.emit(EventType.authSuccess);
