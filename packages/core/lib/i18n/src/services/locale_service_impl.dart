@@ -3,18 +3,25 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class LocaleServiceImpl implements LocaleService {
-  final ValueNotifier<Locale> _notifier = ValueNotifier(
-    LocaleService.isSupported(WidgetsBinding.instance.platformDispatcher.locale)
-        ? WidgetsBinding.instance.platformDispatcher.locale
-        : const Locale('pt', 'BR'),
-  );
+  final PlatformDispatcher _platformDispatcher;
+  late final ValueNotifier<Locale> _notifier;
+
+  LocaleServiceImpl(this._platformDispatcher) {
+    _notifier = ValueNotifier(
+      LocaleService.isSupported(_platformDispatcher.locale)
+          ? _platformDispatcher.locale
+          : const Locale('pt', 'BR'),
+    );
+  }
 
   @override
   ValueListenable<Locale> get listenable => _notifier;
 
   @override
   void update(Locale newLocale) {
-    _notifier.value = newLocale;
+    if (LocaleService.isSupported(newLocale)) {
+      _notifier.value = newLocale;
+    }
   }
 
   @override
