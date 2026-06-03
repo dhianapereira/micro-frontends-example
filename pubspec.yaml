@@ -7,7 +7,7 @@ environment:
 workspace:
   - base_app
   - packages/foundations
-  - packages/core
+  - packages/event_bus
   - micro_apps/micro_app_home
   - micro_apps/micro_app_login
 

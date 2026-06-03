@@ -1,4 +1,4 @@
-import 'package:core/core.dart';
+import 'package:event_bus/event_bus.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'dart:async';
 

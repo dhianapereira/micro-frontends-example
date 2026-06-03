@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:core/event_bus/src/event_type.dart';
-import 'package:core/event_bus/src/types.dart';
+import 'package:event_bus/src/event_type.dart';
+import 'package:event_bus/src/types.dart';
 
 class EventBus {
   EventBus._internal();

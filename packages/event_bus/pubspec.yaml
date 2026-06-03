@@ -1,5 +1,5 @@
-name: core
-description: "The package responsible for connecting the micro_apps to the base_app"
+name: event_bus
+description: Event bus infrastructure used by micro apps to publish app-level events.
 version: 0.0.1
 publish_to: 'none'
 
@@ -16,8 +16,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-    
   flutter_lints: 6.0.0
-  mocktail: 1.0.5
 
 flutter:

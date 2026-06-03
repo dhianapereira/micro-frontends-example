@@ -17,8 +17,8 @@ dependencies:
     sdk: flutter
   foundations:
     path: ../../packages/foundations
-  core:
-    path: ../../packages/core
+  event_bus:
+    path: ../../packages/event_bus
 
 dev_dependencies:
   flutter_test:
