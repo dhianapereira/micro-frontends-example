@@ -3,11 +3,14 @@
 An example micro frontends project in Flutter.
 
 ```
+- BASE_APP/
+- MICRO_APPS/
+  - MICRO_APP_HOME/
+  - MICRO_APP_LOGIN/
 - PACKAGES/
-  - BASE_APP/
+  - COMMONS/
   - CORE/
-  - DEPENDENCIES/
-  - MICRO_APPS/
+- DEPENDENCIES/
 ```
 
 ## Development Environment
@@ -18,7 +21,7 @@ equipped with the following versions:
 | Tool                     | Version |
 |--------------------------|---------|
 | Git                      | latest  |
-| Flutter (channel stable) | 3.22.0  |
+| Flutter (channel stable) | 3.44.0  |
 
 ## Installation Guide
 

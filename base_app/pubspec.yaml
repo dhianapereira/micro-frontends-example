@@ -16,7 +16,7 @@ dependencies:
   dependencies:
     path: ../dependencies
   core:
-    path: ../core
+    path: ../packages/core
   micro_app_login:
     path: ../micro_apps/micro_app_login
   micro_app_home:

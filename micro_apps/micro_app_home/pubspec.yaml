@@ -14,13 +14,13 @@ dependencies:
     sdk: flutter
 
   core:
-    path: ../../core
+    path: ../../packages/core
 
   dependencies:
     path: ../../dependencies
   
   commons:
-    path: ../../commons
+    path: ../../packages/commons
 
 dev_dependencies:
   flutter_test:

@@ -1,42 +1,45 @@
 name: micro_frontends_example
 
 environment:
-  sdk: '>=3.12.0 <4.0.0'
+  sdk: ">=3.12.0 <4.0.0"
+  flutter: ">=3.44.0"
 
 workspace:
-  - packages/base_app
+  - base_app
   - packages/commons
   - packages/core
-  - packages/dependencies
-  - packages/micro_apps/micro_app_home
-  - packages/micro_apps/micro_app_login
+  - dependencies
+  - micro_apps/micro_app_home
+  - micro_apps/micro_app_login
 
 dev_dependencies:
   melos: 7.8.1
   flutter_lints: 6.0.0
 
 melos:
+  sdkPath: auto
+
   ide:
     intellij:
       enabled: false
 
   scripts:
     clean-and-bs:
-      description: Clean and then run bootstrap
+      description: Clean the workspace and fetch Flutter dependencies
       run: |
         echo "Cleaning the workspace..."
-        flutter pub run melos clean
+        melos clean
 
-        echo "Running bootstrap..."
-        flutter pub run melos bootstrap
+        echo "Getting Flutter dependencies..."
+        melos bootstrap
 
     test:all:
-      run: flutter pub run melos run test --no-select
+      run: melos run test --no-select
       description: Run all tests
 
     test:
       run: |
-        flutter pub run melos exec -c 1 --fail-fast -- \
+        melos exec -c 1 --fail-fast -- \
           "flutter test --no-pub"
       description: Run `flutter test` for a specific package
       packageFilters:
