@@ -12,7 +12,7 @@ class MicroAppLogin implements MicroApp {
   @override
   Map<String, WidgetBuilderArgs> get routes {
     return {
-      '/login': (_, __) => LoginPage(),
+      '/login': (_, _) => LoginPage(),
     };
   }
 

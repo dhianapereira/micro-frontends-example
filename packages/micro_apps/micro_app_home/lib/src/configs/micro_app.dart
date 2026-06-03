@@ -12,7 +12,7 @@ class MicroAppHome implements MicroApp {
   @override
   Map<String, WidgetBuilderArgs> get routes {
     return {
-      '/home': (_, __) => HomePage(),
+      '/home': (_, _) => HomePage(),
     };
   }
 

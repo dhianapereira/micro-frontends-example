@@ -16,7 +16,7 @@ class TextWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ValueListenableBuilder<Locale>(
       valueListenable: GetIt.I<LocaleService>().listenable,
-      builder: (_, __, ___) {
+      builder: (_, _, _) {
         return Text(
           translate(),
           textAlign: TextAlign.start,

@@ -1,8 +1,70 @@
 name: micro_frontends_example
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: '>=3.12.0 <4.0.0'
+
+workspace:
+  - packages/base_app
+  - packages/commons
+  - packages/core
+  - packages/dependencies
+  - packages/micro_apps/micro_app_home
+  - packages/micro_apps/micro_app_login
 
 dev_dependencies:
-  melos: 6.0.0
-  flutter_lints: 2.0.0
+  melos: 7.8.1
+  flutter_lints: 6.0.0
+
+melos:
+  ide:
+    intellij:
+      enabled: false
+
+  scripts:
+    clean-and-bs:
+      description: Clean and then run bootstrap
+      run: |
+        echo "Cleaning the workspace..."
+        flutter pub run melos clean
+
+        echo "Running bootstrap..."
+        flutter pub run melos bootstrap
+
+    test:all:
+      run: flutter pub run melos run test --no-select
+      description: Run all tests
+
+    test:
+      run: |
+        flutter pub run melos exec -c 1 --fail-fast -- \
+          "flutter test --no-pub"
+      description: Run `flutter test` for a specific package
+      packageFilters:
+        dirExists:
+          - test
+
+    android-wifi:
+      description: Connect an Android device via Wifi
+      run: |
+        echo "Getting the IP address of the Android device..."
+        IP=$(adb shell ip -f inet addr show wlan0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
+        if [ -z "$IP" ]; then
+            echo "Failed to obtain the IP address of the device. Ensure the device is connected via USB and USB debugging is enabled."
+            exit 1
+        fi
+
+        echo "Enabling TCP/IP connection..."
+        adb tcpip 5555
+        sleep 2
+
+        echo "Connecting to the device via Wi-Fi..."
+        adb connect $IP:5555
+        if adb devices | grep -q "$IP:5555"; then
+            echo "Successfully connected to the device via Wi-Fi."
+        else
+            echo "Failed to connect to the device via Wi-Fi."
+            exit 1
+        fi
+
+        adb devices
+        echo "The device is ready for use."
