@@ -8,9 +8,14 @@ An example micro frontends project in Flutter.
   - MICRO_APP_HOME/
   - MICRO_APP_LOGIN/
 - PACKAGES/
-  - CORE/
-- DEPENDENCIES/
+  - EVENT_BUS/
+  - FOUNDATIONS/
+- DOCS/
 ```
+
+## Documentation
+
+- [Creating a Micro App](docs/creating-a-micro-app.md)
 
 ## Development Environment
 
