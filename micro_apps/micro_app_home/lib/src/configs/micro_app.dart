@@ -1,5 +1,5 @@
 import 'package:core/core.dart';
-import 'package:dependencies/dependencies.dart';
+import 'package:get_it/get_it.dart';
 import 'package:micro_app_home/src/configs/constants.dart';
 import 'package:micro_app_home/src/configs/i18n.dart';
 import 'package:micro_app_home/src/configs/translator.dart';

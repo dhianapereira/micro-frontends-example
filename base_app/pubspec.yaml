@@ -13,8 +13,9 @@ dependencies:
   flutter:
     sdk: flutter
 
-  dependencies:
-    path: ../dependencies
+  flutter_localizations:
+    sdk: flutter
+  get_it: 9.2.1
   core:
     path: ../packages/core
   micro_app_login:

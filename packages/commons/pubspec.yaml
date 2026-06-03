@@ -12,9 +12,8 @@ resolution: workspace
 dependencies:
   flutter:
     sdk: flutter
-  
-  dependencies:
-    path: ../../dependencies
+
+  get_it: 9.2.1
   
   core:
     path: ../core

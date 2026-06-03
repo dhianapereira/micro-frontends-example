@@ -16,8 +16,7 @@ dependencies:
   core:
     path: ../../packages/core
 
-  dependencies:
-    path: ../../dependencies
+  get_it: 9.2.1
 
   commons:
     path: ../../packages/commons

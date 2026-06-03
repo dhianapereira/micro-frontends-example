@@ -1,5 +1,5 @@
 import 'package:commons/commons.dart';
-import 'package:dependencies/dependencies.dart';
+import 'package:get_it/get_it.dart';
 import 'package:flutter/material.dart';
 import 'package:micro_app_home/src/configs/translator.dart';
 

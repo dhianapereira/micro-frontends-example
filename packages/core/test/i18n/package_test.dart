@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:core/core.dart';
 import 'package:core/i18n/src/services/locale_service_impl.dart';
 import 'package:core/i18n/src/services/translator_impl.dart';
-import 'package:dependencies/dependencies.dart';
+import 'package:get_it/get_it.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';

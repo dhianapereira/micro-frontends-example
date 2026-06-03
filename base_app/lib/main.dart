@@ -1,7 +1,8 @@
 import 'package:base_app/src/base_app.dart';
 import 'package:core/core.dart';
-import 'package:dependencies/dependencies.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

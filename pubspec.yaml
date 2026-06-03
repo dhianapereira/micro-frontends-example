@@ -8,7 +8,6 @@ workspace:
   - base_app
   - packages/commons
   - packages/core
-  - dependencies
   - micro_apps/micro_app_home
   - micro_apps/micro_app_login
 
