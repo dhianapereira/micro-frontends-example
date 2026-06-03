@@ -2,7 +2,8 @@ import 'package:base_app/src/base_app.dart';
 import 'package:core/core.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
+import 'package:micro_app_home/micro_app_home.dart';
+import 'package:micro_app_login/micro_app_login.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,27 +21,7 @@ class AppWidget extends StatefulWidget {
   State<AppWidget> createState() => _AppWidgetState();
 }
 
-class _AppWidgetState extends State<AppWidget> with WidgetsBindingObserver {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addObserver(this);
-  }
-
-  @override
-  void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
-    super.dispose();
-  }
-
-  @override
-  void didChangeLocales(List<Locale>? locales) {
-    super.didChangeLocales(locales);
-    if (locales != null && locales.isNotEmpty) {
-      GetIt.I<LocaleService>().update(locales.first);
-    }
-  }
-
+class _AppWidgetState extends State<AppWidget> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -54,9 +35,13 @@ class _AppWidgetState extends State<AppWidget> with WidgetsBindingObserver {
         GlobalMaterialLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
+        MicroAppHomeLocalizations.delegate,
+        MicroAppLoginLocalizations.delegate,
       ],
-      supportedLocales: LocaleService.supportedLocales,
-      locale: GetIt.I<LocaleService>().currentLocale,
+      supportedLocales: const [
+        Locale('en'),
+        Locale('pt'),
+      ],
     );
   }
 }

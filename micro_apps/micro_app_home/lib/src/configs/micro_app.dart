@@ -1,8 +1,5 @@
 import 'package:core/core.dart';
-import 'package:get_it/get_it.dart';
 import 'package:micro_app_home/src/configs/constants.dart';
-import 'package:micro_app_home/src/configs/i18n.dart';
-import 'package:micro_app_home/src/configs/translator.dart';
 import 'package:micro_app_home/src/home_page.dart';
 
 class MicroAppHome implements MicroApp {
@@ -12,20 +9,13 @@ class MicroAppHome implements MicroApp {
   @override
   Map<String, WidgetBuilderArgs> get routes {
     return {
-      '/home': (_, _) => HomePage(),
+      '/home': (_, _) => const HomePage(),
     };
   }
 
   @override
-  Future<void> injectionsRegister() async {
-    GetIt.I.registerSingleton<MicroAppHomeTranslator>(
-      MicroAppHomeTranslator(GetIt.I<Translator>()),
-    );
-  }
+  Future<void> injectionsRegister() async {}
 
   @override
   void Function() get registerListener => () {};
-
-  @override
-  final I18n i18n = MicroAppHomeI18n();
 }

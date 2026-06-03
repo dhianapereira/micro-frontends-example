@@ -1,0 +1,7 @@
+arb-dir: lib/src/l10n/arb
+template-arb-file: app_en.arb
+output-localization-file: micro_app_login_localizations.dart
+output-class: MicroAppLoginLocalizations
+output-dir: lib/src/l10n/generated
+synthetic-package: false
+nullable-getter: false

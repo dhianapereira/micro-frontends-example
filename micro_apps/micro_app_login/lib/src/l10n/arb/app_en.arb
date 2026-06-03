@@ -1,0 +1,7 @@
+{
+  "@@locale": "en",
+  "login": "Login",
+  "@login": {
+    "description": "Login button label."
+  }
+}

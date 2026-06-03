@@ -1,0 +1,13 @@
+{
+  "@@locale": "en",
+  "greetings": "Hello, {name}",
+  "@greetings": {
+    "description": "Greeting shown on the home page.",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "World"
+      }
+    }
+  }
+}

@@ -1,8 +1,5 @@
 import 'package:core/core.dart';
-import 'package:get_it/get_it.dart';
 import 'package:micro_app_login/src/configs/constants.dart';
-import 'package:micro_app_login/src/configs/i18n.dart';
-import 'package:micro_app_login/src/configs/translator.dart';
 import 'package:micro_app_login/src/login_page.dart';
 
 class MicroAppLogin implements MicroApp {
@@ -12,20 +9,13 @@ class MicroAppLogin implements MicroApp {
   @override
   Map<String, WidgetBuilderArgs> get routes {
     return {
-      '/login': (_, _) => LoginPage(),
+      '/login': (_, _) => const LoginPage(),
     };
   }
 
   @override
-  Future<void> injectionsRegister() async {
-    GetIt.I.registerSingleton<MicroAppLoginTranslator>(
-      MicroAppLoginTranslator(GetIt.I<Translator>()),
-    );
-  }
+  Future<void> injectionsRegister() async {}
 
   @override
   void Function() get registerListener => () {};
-
-  @override
-  final I18n i18n = MicroAppLoginI18n();
 }

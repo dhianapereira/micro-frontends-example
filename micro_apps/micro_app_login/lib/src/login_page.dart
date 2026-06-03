@@ -1,12 +1,9 @@
-import 'package:commons/commons.dart';
 import 'package:core/core.dart';
-import 'package:get_it/get_it.dart';
 import 'package:flutter/material.dart';
-import 'package:micro_app_login/src/configs/translator.dart';
+import 'package:micro_app_login/src/l10n/l10n.dart';
 
 class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
-  final translator = GetIt.I<MicroAppLoginTranslator>();
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +11,10 @@ class LoginPage extends StatelessWidget {
       body: Center(
         child: TextButton(
           style: TextButton.styleFrom(backgroundColor: Colors.blue),
-          child: TextWidget(
-            translate: () => translator.translate(key: 'login'),
-            color: Colors.white,
+          child: Text(
+            context.l10n.login,
+            textAlign: TextAlign.start,
+            style: const TextStyle(color: Colors.white),
           ),
           onPressed: () {
             EventBus.emit(EventType.authSuccess);

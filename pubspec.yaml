@@ -6,7 +6,6 @@ environment:
 
 workspace:
   - base_app
-  - packages/commons
   - packages/core
   - micro_apps/micro_app_home
   - micro_apps/micro_app_login

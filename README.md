@@ -8,7 +8,6 @@ An example micro frontends project in Flutter.
   - MICRO_APP_HOME/
   - MICRO_APP_LOGIN/
 - PACKAGES/
-  - COMMONS/
   - CORE/
 - DEPENDENCIES/
 ```
@@ -19,7 +18,7 @@ To avoid issues, it's advisable that your development environment is
 equipped with the following versions:
 
 | Tool                     | Version |
-|--------------------------|---------|
+| ------------------------ | ------- |
 | Git                      | latest  |
 | Flutter (channel stable) | 3.44.0  |
 
