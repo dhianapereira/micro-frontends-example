@@ -1,58 +1,88 @@
-# [WIP] Micro Frontends Example
+# Micro Frontends Example
 
-An example micro frontends project in Flutter.
+An example Flutter monorepo used to explore micro frontend architecture, package boundaries, Melos workflows, localizations, and shared infrastructure.
 
-```
-- BASE_APP/
-- MICRO_APPS/
-  - MICRO_APP_HOME/
-  - MICRO_APP_LOGIN/
-- PACKAGES/
-  - EVENT_BUS/
-  - FOUNDATIONS/
-- DOCS/
+This project is intentionally small, but the structure is meant to model decisions that matter in larger Flutter codebases: each micro app owns its feature code, reusable contracts live in dedicated packages, and dependencies are declared where they are actually used.
+
+## Project Structure
+
+```text
+base_app/
+micro_apps/
+  micro_app_home/
+  micro_app_login/
+packages/
+  event_bus/
+  foundations/
+docs/
 ```
 
 ## Documentation
 
-- [Creating a Micro App](docs/creating-a-micro-app.md)
+- [Architecture](docs/architecture.md)
+- [Creating a Micro App](docs/creating_a_micro_app.md)
+- [Foundations package](packages/foundations/README.md)
+- [Event Bus package](packages/event_bus/README.md)
 
-## Development Environment
-
-To avoid issues, it's advisable that your development environment is
-equipped with the following versions:
+## Requirements
 
 | Tool                     | Version |
 | ------------------------ | ------- |
 | Git                      | latest  |
 | Flutter (channel stable) | 3.44.0  |
+| Dart                     | 3.12.0  |
+| Melos                    | 7.8.1   |
 
-## Installation Guide
+ADB is optional, but useful when running the Android app on a physical device.
 
-Before you start, ensure you have the following installed and configured on your machine:
+## Getting Started
 
-- Flutter: Follow the official [Flutter installation guide](https://docs.flutter.dev/get-started/install) to set up Flutter.
-- Melos: It's a CLI tool for managing monorepos in Dart & Flutter. Follow the official [Melos installation guide](https://melos.invertase.dev/getting-started) to set up Melos.
-- ADB (Android Debug Bridge): ADB is a versatile command-line tool that lets you communicate with a
-  device. It is included in the Android SDK Platform-Tools package. Follow
-  the [official instructions](https://developer.android.com/tools/adb) to install ADB.
-
-With the tools properly installed, execute the commands below:
-
-### **1. Clone repository**
+Clone the repository:
 
 ```bash
 git clone https://github.com/dhianapereira/micro-frontends-example.git
-```
-
-### **2. Go to the project folder**
-
-```bash
 cd micro-frontends-example
 ```
 
-### **3. Run the app**
+Install workspace dependencies:
 
-Start a mobile device emulator or connect your smartphone to the computer.
-Ensure that your device has USB debugging enabled.
-Run the application on your connected (or emulated).
+```bash
+melos run clean-and-bs
+```
+
+Run the app from the shell package:
+
+```bash
+cd base_app
+flutter run
+```
+
+## Common Commands
+
+Clean and bootstrap the workspace:
+
+```bash
+melos run clean-and-bs
+```
+
+Run all tests:
+
+```bash
+melos run test:all
+```
+
+Run static analysis:
+
+```bash
+melos exec -c 1 --fail-fast -- flutter analyze --no-pub
+```
+
+Connect an Android device over Wi-Fi:
+
+```bash
+melos run android-wifi
+```
+
+## License
+
+This project is licensed under the terms described in [LICENSE](LICENSE).
