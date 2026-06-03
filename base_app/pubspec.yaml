@@ -15,8 +15,8 @@ dependencies:
 
   flutter_localizations:
     sdk: flutter
-  core:
-    path: ../packages/core
+  foundations:
+    path: ../packages/foundations
   micro_app_login:
     path: ../micro_apps/micro_app_login
   micro_app_home:

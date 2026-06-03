@@ -1,5 +1,5 @@
 import 'package:base_app/src/base_app.dart';
-import 'package:core/core.dart';
+import 'package:foundations/foundations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:micro_app_home/micro_app_home.dart';

@@ -1,4 +1,4 @@
-import 'package:core/core.dart';
+import 'package:foundations/foundations.dart';
 import 'package:flutter/material.dart';
 import 'package:micro_app_home/micro_app_home.dart';
 import 'package:micro_app_login/micro_app_login.dart';

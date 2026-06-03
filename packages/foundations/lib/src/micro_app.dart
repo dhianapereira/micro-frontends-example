@@ -1,4 +1,4 @@
-import 'package:core/abstractions/src/utils.dart';
+import 'package:foundations/src/utils.dart';
 
 abstract class MicroApp {
   String get microAppName;

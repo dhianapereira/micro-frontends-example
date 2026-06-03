@@ -1,5 +1,5 @@
-name: micro_app_home
-description: "A new Flutter package project."
+name: foundations
+description: Shared contracts and primitives for the micro frontends workspace.
 version: 0.0.1
 publish_to: 'none'
 
@@ -13,18 +13,9 @@ dependencies:
   flutter:
     sdk: flutter
 
-  flutter_localizations:
-    sdk: flutter
-  foundations:
-    path: ../../packages/foundations
-  
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
   flutter_lints: 6.0.0
-  mocktail: 1.0.5
 
 flutter:
-  generate: true
-  uses-material-design: true

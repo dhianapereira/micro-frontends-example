@@ -1,4 +1,4 @@
-import 'package:core/core.dart';
+import 'package:foundations/foundations.dart';
 import 'package:micro_app_home/src/configs/constants.dart';
 import 'package:micro_app_home/src/home_page.dart';
 

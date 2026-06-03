@@ -1,4 +1,4 @@
-import 'package:core/core.dart';
+import 'package:foundations/foundations.dart';
 import 'package:micro_app_login/src/configs/constants.dart';
 import 'package:micro_app_login/src/login_page.dart';
 
