@@ -7,14 +7,12 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   test-and-coverage:
     name: Test and update coverage
     runs-on: ubuntu-latest
-    # The coverage badge update creates a commit on main. The marker prevents
-    # that automated commit from triggering this workflow again.
-    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -34,8 +32,15 @@ jobs:
         shell: bash
         run: tool/ci/update_coverage_badge.sh
 
-      - name: Commit coverage badge
-        uses: stefanzweifel/git-auto-commit-action@v6
+      - name: Create coverage badge pull request
+        uses: peter-evans/create-pull-request@v7
         with:
-          commit_message: "docs: update coverage badge [skip ci]"
-          file_pattern: README.md
+          branch: ci/update-coverage-badge
+          delete-branch: true
+          commit-message: "docs: update coverage badge"
+          title: "docs: update coverage badge"
+          body: |
+            Updates the README coverage badge from the latest successful run on main.
+
+            This PR is created automatically by the main CI workflow.
+          labels: ci, documentation
