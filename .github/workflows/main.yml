@@ -30,8 +30,14 @@ jobs:
   test-and-coverage:
     name: Test and update coverage
     runs-on: ubuntu-latest
-    # Extra guard for squash/merge commits created from the automated badge PR.
-    if: ${{ !contains(github.event.head_commit.message, 'docs: update coverage badge') }}
+    # The trigger already targets main, but this job-level guard makes the
+    # intent explicit and prevents accidental execution if the trigger changes.
+    # It also skips squash/merge commits created from the automated badge PR.
+    if: >-
+      ${{
+        github.ref == 'refs/heads/main' &&
+        !contains(github.event.head_commit.message, 'docs: update coverage badge')
+      }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
