@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:event_bus/src/event_type.dart';
+import 'package:event_bus/src/app_event.dart';
 import 'package:event_bus/src/types.dart';
 
 class EventBus {
@@ -8,9 +8,9 @@ class EventBus {
   static final _singleton = EventBus._internal();
   factory EventBus() => _singleton;
 
-  final _bus = StreamController<EventType>.broadcast();
+  final _bus = StreamController<AppEvent>.broadcast();
 
-  static void emit(EventType event) {
+  static void emit(AppEvent event) {
     _singleton._bus.sink.add(event);
   }
 

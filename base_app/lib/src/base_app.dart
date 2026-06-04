@@ -44,7 +44,7 @@ class BaseApp {
 
   void _registerShellListeners() {
     EventBus.listen((event) {
-      if (event == EventType.authSuccess) {
+      if (event is AuthSuccessEvent) {
         _appRouter.go('/home');
       }
     });

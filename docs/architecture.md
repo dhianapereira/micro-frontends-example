@@ -53,7 +53,7 @@ Micro apps expose a `MicroApp` implementation with lifecycle hooks and route own
 
 `packages/navigation` contains route contracts and the internal GoRouter setup. `AppRoute` lives here, while GoRouter stays hidden behind `AppRouter`. Packages that only need the route contract can import `package:navigation/app_route.dart`. The shell owns `/`; micro apps should register feature paths such as `/login` or `/home`.
 
-`packages/event_bus` contains app-level event infrastructure. It allows micro apps to publish coarse-grained events without depending directly on the shell app.
+`packages/event_bus` contains app-level event infrastructure. It allows micro apps to emit coarse-grained events without depending directly on the shell app. Concrete events live in the package that owns the behavior, while `event_bus` only owns the bus and `AppEvent` contract.
 
 Shared packages should stay focused. A package should not become a place to centralize unrelated dependencies just to avoid repeating declarations in `pubspec.yaml`.
 
