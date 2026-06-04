@@ -1,0 +1,28 @@
+name: Setup Flutter Environment
+description: Prepare Java, Flutter, Melos and project dependencies for CI jobs
+
+runs:
+  using: composite
+  steps:
+    - name: Set up Java
+      uses: actions/setup-java@v5
+      with:
+        distribution: temurin
+        java-version: "17"
+
+    - name: Set up Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        channel: stable
+        flutter-version: "3.44.0"
+        cache: true
+
+    - name: Add pub cache to PATH
+      shell: bash
+      run: echo "$HOME/.pub-cache/bin" >> "$GITHUB_PATH"
+
+    - name: Install dependencies
+      shell: bash
+      run: |
+        flutter pub get
+        dart run melos bootstrap

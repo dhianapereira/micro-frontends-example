@@ -85,6 +85,16 @@ Connect an Android device over Wi-Fi:
 melos run android-wifi
 ```
 
+## CI
+
+Pull requests run an optimized pipeline:
+
+- non-runtime changes, such as docs and non-Dart scripts, skip Flutter analysis and tests;
+- Melos detects affected packages with `--diff`;
+- shared package changes include dependent packages with `--include-dependents`;
+- static analysis runs only for affected packages;
+- tests run only for affected packages that have a `test` directory.
+
 ## License
 
 This project is licensed under the terms described in [LICENSE](LICENSE).
