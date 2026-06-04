@@ -1,5 +1,7 @@
 # Micro Frontends Example
 
+![Coverage](https://img.shields.io/badge/coverage-79.82%25-yellowgreen)
+
 An example Flutter monorepo used to explore micro frontend architecture, package boundaries, Melos workflows, localizations, and shared infrastructure.
 
 This project is intentionally small, but the structure is meant to model decisions that matter in larger Flutter codebases: each micro app owns its feature code, reusable contracts live in dedicated packages, and dependencies are declared where they are actually used.
@@ -94,6 +96,9 @@ Pull requests run an optimized pipeline:
 - shared package changes include dependent packages with `--include-dependents`;
 - static analysis runs only for affected packages;
 - tests run only for affected packages that have a `test` directory.
+
+Commits on `main` run the full test suite, generate coverage from all package
+`lcov.info` files, and update the coverage badge above.
 
 ## License
 

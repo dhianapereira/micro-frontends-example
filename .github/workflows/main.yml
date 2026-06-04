@@ -1,0 +1,41 @@
+name: Main
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  test-and-coverage:
+    name: Test and update coverage
+    runs-on: ubuntu-latest
+    # The coverage badge update creates a commit on main. The marker prevents
+    # that automated commit from triggering this workflow again.
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter Environment
+        uses: ./.github/actions/setup-flutter
+
+      - name: Run all tests with coverage
+        run: |
+          # Main validates the whole workspace, unlike pull requests where Melos
+          # filters by diff.
+          dart run melos exec -c 1 --fail-fast \
+            --dir-exists=test \
+            -- flutter test --coverage --no-pub
+
+      - name: Update coverage badge
+        shell: bash
+        run: tool/ci/update_coverage_badge.sh
+
+      - name: Commit coverage badge
+        uses: stefanzweifel/git-auto-commit-action@v6
+        with:
+          commit_message: "docs: update coverage badge [skip ci]"
+          file_pattern: README.md
