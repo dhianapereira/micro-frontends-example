@@ -4,23 +4,6 @@ on:
   pull_request:
     branches:
       - main
-    # Ignore documentation-only or non-Dart script changes at the trigger level.
-    # Package selection still happens with Melos inside each job.
-    paths:
-      - "base_app/**/*.dart"
-      - "base_app/pubspec.yaml"
-      - "base_app/analysis_options.yaml"
-      - "micro_apps/**/*.dart"
-      - "micro_apps/**/*.arb"
-      - "micro_apps/**/l10n.yaml"
-      - "micro_apps/**/pubspec.yaml"
-      - "micro_apps/**/analysis_options.yaml"
-      - "packages/**/*.dart"
-      - "packages/**/pubspec.yaml"
-      - "packages/**/analysis_options.yaml"
-      - "pubspec.yaml"
-      - "pubspec.lock"
-      - "analysis_options.yaml"
 
 permissions:
   contents: read
@@ -36,10 +19,20 @@ jobs:
           # Melos --diff needs the base branch history.
           fetch-depth: 0
 
+      - name: Detect runtime changes
+        id: changes
+        uses: ./.github/actions/detect-runtime-changes
+
       - name: Setup Flutter Environment
+        if: steps.changes.outputs.has_runtime_changes == 'true'
         uses: ./.github/actions/setup-flutter
 
+      - name: Skip lint
+        if: steps.changes.outputs.has_runtime_changes != 'true'
+        run: echo "Skipping lint because this PR has no Dart or Flutter runtime changes."
+
       - name: Analyze affected packages
+        if: steps.changes.outputs.has_runtime_changes == 'true'
         run: |
           # Root workspace files can affect every package, so they trigger a
           # full workspace analysis. Otherwise, Melos selects changed packages
@@ -67,10 +60,20 @@ jobs:
           # Melos --diff needs the base branch history.
           fetch-depth: 0
 
+      - name: Detect runtime changes
+        id: changes
+        uses: ./.github/actions/detect-runtime-changes
+
       - name: Setup Flutter Environment
+        if: steps.changes.outputs.has_runtime_changes == 'true'
         uses: ./.github/actions/setup-flutter
 
+      - name: Skip tests
+        if: steps.changes.outputs.has_runtime_changes != 'true'
+        run: echo "Skipping tests because this PR has no Dart or Flutter runtime changes."
+
       - name: Test affected packages
+        if: steps.changes.outputs.has_runtime_changes == 'true'
         run: |
           # --include-dependents can bring packages without tests into the
           # affected set. The shell guard keeps those packages from failing with
