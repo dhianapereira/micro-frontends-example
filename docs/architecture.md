@@ -51,7 +51,7 @@ Micro apps expose a `MicroApp` implementation with lifecycle hooks and route own
 
 `packages/foundations` contains shared contracts used across package boundaries. The main example is `MicroApp`.
 
-`packages/navigation` contains route contracts and the internal GoRouter setup. `AppRoute` lives here, while GoRouter stays hidden behind `AppRouter`. Packages that only need the route contract can import `package:navigation/app_route.dart`. The shell owns `/`; micro apps should register feature paths such as `/login` or `/home`.
+`packages/navigation` contains route contracts and the internal GoRouter setup. `AppRoute` lives here, while GoRouter stays hidden behind `AppRouter` and `AppNavigator`. Packages that only need the route contract can import `package:navigation/app_route.dart`. The shell owns `/`; micro apps should register feature paths such as `/login` or `/home`, and internal pages should remain under that namespace, such as `/login/forgot-password`.
 
 `packages/event_bus` contains app-level event infrastructure. It allows micro apps to emit coarse-grained events without depending directly on the shell app. Concrete events live in the package that owns the behavior, while `event_bus` only owns the bus and `AppEvent` contract.
 

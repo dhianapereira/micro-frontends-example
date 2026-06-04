@@ -3,5 +3,21 @@
   "login": "Login",
   "@login": {
     "description": "Login button label."
+  },
+  "forgotPassword": "Forgot password?",
+  "@forgotPassword": {
+    "description": "Forgot password navigation button label."
+  },
+  "forgotPasswordTitle": "Forgot password",
+  "@forgotPasswordTitle": {
+    "description": "Forgot password page title."
+  },
+  "forgotPasswordDescription": "Use this page as an example of internal navigation inside the login micro app.",
+  "@forgotPasswordDescription": {
+    "description": "Forgot password page description."
+  },
+  "backToLogin": "Back to login",
+  "@backToLogin": {
+    "description": "Button label to return to the login page."
   }
 }

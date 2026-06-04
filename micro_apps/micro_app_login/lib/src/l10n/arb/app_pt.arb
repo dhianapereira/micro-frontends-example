@@ -3,5 +3,21 @@
   "login": "Entrar",
   "@login": {
     "description": "Login button label."
+  },
+  "forgotPassword": "Esqueci a senha",
+  "@forgotPassword": {
+    "description": "Forgot password navigation button label."
+  },
+  "forgotPasswordTitle": "Esqueci a senha",
+  "@forgotPasswordTitle": {
+    "description": "Forgot password page title."
+  },
+  "forgotPasswordDescription": "Use esta página como exemplo de navegação interna dentro do micro app de login.",
+  "@forgotPasswordDescription": {
+    "description": "Forgot password page description."
+  },
+  "backToLogin": "Voltar para o login",
+  "@backToLogin": {
+    "description": "Button label to return to the login page."
   }
 }

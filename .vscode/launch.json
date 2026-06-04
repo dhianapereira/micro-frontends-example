@@ -6,20 +6,20 @@
     "configurations": [
         {
             "name": "App",
-            "cwd": "packages/base_app",
+            "program": "base_app/lib/main.dart",
             "request": "launch",
             "type": "dart"
         },
         {
             "name": "App (profile mode)",
-            "cwd": "packages/base_app",
+            "program": "base_app/lib/main.dart",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
             "name": "App (release mode)",
-            "cwd": "packages/base_app",
+            "program": "base_app/lib/main.dart",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"
