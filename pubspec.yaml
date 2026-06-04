@@ -8,6 +8,7 @@ workspace:
   - base_app
   - packages/foundations
   - packages/event_bus
+  - packages/navigation
   - micro_apps/micro_app_home
   - micro_apps/micro_app_login
 

@@ -1,3 +1,1 @@
-enum EventType {
-  authSuccess,
-}
+enum EventType { authSuccess }

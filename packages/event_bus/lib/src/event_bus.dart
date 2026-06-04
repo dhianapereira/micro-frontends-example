@@ -8,7 +8,7 @@ class EventBus {
   static final _singleton = EventBus._internal();
   factory EventBus() => _singleton;
 
-  final _bus = StreamController.broadcast();
+  final _bus = StreamController<EventType>.broadcast();
 
   static void emit(EventType event) {
     _singleton._bus.sink.add(event);

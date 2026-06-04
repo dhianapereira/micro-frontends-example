@@ -14,6 +14,7 @@ micro_apps/
 packages/
   event_bus/
   foundations/
+  navigation/
 docs/
 ```
 
@@ -24,8 +25,8 @@ docs/
 It is responsible for:
 
 - registering micro apps;
-- aggregating routes exposed by micro apps;
-- configuring the root `MaterialApp`;
+- composing routes exposed by micro apps into one router;
+- configuring the root `MaterialApp.router`;
 - registering localization delegates exported by micro apps;
 - owning the Android and iOS Flutter app targets.
 
@@ -43,11 +44,13 @@ Each micro app owns:
 - its tests;
 - its direct package dependencies.
 
-Micro apps expose a `MicroApp` implementation from `foundations`. The shell uses that contract to discover routes and run setup hooks.
+Micro apps expose a `MicroApp` implementation with lifecycle hooks and route ownership.
 
 ## Shared Packages
 
-`packages/foundations` contains shared contracts and small primitives used across package boundaries. Examples include `MicroApp`, `WidgetBuilderArgs`, and `navigatorKey`.
+`packages/foundations` contains shared contracts used across package boundaries. The main example is `MicroApp`.
+
+`packages/navigation` contains route contracts and the internal GoRouter setup. `AppRoute` lives here, while GoRouter stays hidden behind `AppRouter`. Packages that only need the route contract can import `package:navigation/app_route.dart`.
 
 `packages/event_bus` contains app-level event infrastructure. It allows micro apps to publish coarse-grained events without depending directly on the shell app.
 
@@ -61,16 +64,24 @@ The dependency graph should stay simple:
 base_app
   -> micro_apps/*
   -> packages/foundations
+  -> packages/navigation
+  -> packages/event_bus
 
 micro_apps/*
   -> packages/foundations
+  -> packages/navigation
   -> packages/event_bus, only when app-level events are needed
+
+packages/foundations
+  -> packages/navigation
+  -> no app-specific packages
+
+packages/navigation
+  -> no app-specific packages
 
 packages/event_bus
   -> no app-specific packages
 
-packages/foundations
-  -> no app-specific packages
 ```
 
 Avoid dependencies from shared packages back into `base_app` or into specific micro apps.

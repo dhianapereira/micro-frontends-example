@@ -1,8 +1,8 @@
-import 'package:foundations/src/utils.dart';
+import 'package:navigation/navigation.dart';
 
 abstract class MicroApp {
   String get microAppName;
-  Map<String, WidgetBuilderArgs> get routes;
+  List<AppRoute> get routes;
   Future<void> injectionsRegister();
-  void Function() get registerListener;
+  void registerEventHandlers();
 }

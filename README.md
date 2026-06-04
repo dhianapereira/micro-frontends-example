@@ -14,6 +14,7 @@ micro_apps/
 packages/
   event_bus/
   foundations/
+  navigation/
 docs/
 ```
 
@@ -23,6 +24,7 @@ docs/
 - [Creating a Micro App](docs/creating_a_micro_app.md)
 - [Foundations package](packages/foundations/README.md)
 - [Event Bus package](packages/event_bus/README.md)
+- [Navigation package](packages/navigation/README.md)
 
 ## Requirements
 

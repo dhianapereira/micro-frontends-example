@@ -19,7 +19,7 @@ void main() {
 
   test('Should return correct routes', () {
     final routes = microApp.routes;
-    expect(routes.containsKey('/home'), isTrue);
-    expect(routes['/home'], isNotNull);
+    expect(routes, hasLength(1));
+    expect(routes.single.path, '/home');
   });
 }

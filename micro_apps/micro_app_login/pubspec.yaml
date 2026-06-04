@@ -19,6 +19,8 @@ dependencies:
     path: ../../packages/foundations
   event_bus:
     path: ../../packages/event_bus
+  navigation:
+    path: ../../packages/navigation
 
 dev_dependencies:
   flutter_test:

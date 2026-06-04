@@ -7,7 +7,8 @@ void main() {
   testWidgets('Should display translated text', (tester) async {
     await tester.pumpWidget(
       const MaterialApp(
-        localizationsDelegates: MicroAppHomeLocalizations.localizationsDelegates,
+        localizationsDelegates:
+            MicroAppHomeLocalizations.localizationsDelegates,
         supportedLocales: MicroAppHomeLocalizations.supportedLocales,
         home: HomePage(),
       ),

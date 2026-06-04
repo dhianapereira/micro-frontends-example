@@ -1,60 +1,44 @@
+import 'package:event_bus/event_bus.dart';
+import 'package:flutter/widgets.dart';
 import 'package:foundations/foundations.dart';
-import 'package:flutter/material.dart';
 import 'package:micro_app_home/micro_app_home.dart';
 import 'package:micro_app_login/micro_app_login.dart';
+import 'package:navigation/navigation.dart';
 
 class BaseApp {
-  Map<String, WidgetBuilderArgs> get baseRoutes => {};
+  final List<MicroApp> _microApps = [MicroAppLogin(), MicroAppHome()];
 
-  List<MicroApp> get microApps {
-    return [
-      MicroAppLogin(),
-      MicroAppHome(),
-    ];
+  late final AppRouter _appRouter = AppRouter(routes: _microAppRoutes);
+
+  RouterConfig<Object> get routerConfig => _appRouter.config;
+
+  List<AppRoute> get _microAppRoutes {
+    return _microApps.expand((microApp) => microApp.routes).toList();
   }
-
-  final Map<String, WidgetBuilderArgs> routes = {};
 
   Future<void> init() async {
     await _registerInjections();
-    _registerRoutes();
-    _registerListeners();
-  }
-
-  void _registerRoutes() {
-    if (baseRoutes.isNotEmpty) routes.addAll(baseRoutes);
-    if (microApps.isNotEmpty) {
-      for (MicroApp microApp in microApps) {
-        routes.addAll(microApp.routes);
-      }
-    }
+    _registerShellListeners();
+    _registerMicroAppEventHandlers();
   }
 
   Future<void> _registerInjections() async {
-    if (microApps.isNotEmpty) {
-      for (MicroApp microApp in microApps) {
-        await microApp.injectionsRegister();
-      }
+    for (final microApp in _microApps) {
+      await microApp.injectionsRegister();
     }
   }
 
-  void _registerListeners() {
-    if (microApps.isNotEmpty) {
-      for (MicroApp microApp in microApps) {
-        microApp.registerListener();
+  void _registerShellListeners() {
+    EventBus.listen((event) {
+      if (event == EventType.authSuccess) {
+        _appRouter.go('/home');
       }
-    }
+    });
   }
 
-  Route<dynamic>? generateRoute(RouteSettings settings) {
-    var routerName = settings.name;
-    var routerArgs = settings.arguments;
-
-    var navigateTo = routes[routerName];
-    if (navigateTo == null) return null;
-
-    return MaterialPageRoute(
-      builder: (context) => navigateTo.call(context, routerArgs),
-    );
+  void _registerMicroAppEventHandlers() {
+    for (final microApp in _microApps) {
+      microApp.registerEventHandlers();
+    }
   }
 }

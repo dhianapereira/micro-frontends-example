@@ -15,8 +15,12 @@ dependencies:
 
   flutter_localizations:
     sdk: flutter
+  event_bus:
+    path: ../packages/event_bus
   foundations:
     path: ../packages/foundations
+  navigation:
+    path: ../packages/navigation
   micro_app_login:
     path: ../micro_apps/micro_app_login
   micro_app_home:

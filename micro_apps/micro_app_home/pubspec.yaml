@@ -17,6 +17,8 @@ dependencies:
     sdk: flutter
   foundations:
     path: ../../packages/foundations
+  navigation:
+    path: ../../packages/navigation
   
 dev_dependencies:
   flutter_test:

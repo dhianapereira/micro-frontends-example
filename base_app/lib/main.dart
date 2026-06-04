@@ -1,5 +1,4 @@
 import 'package:base_app/src/base_app.dart';
-import 'package:foundations/foundations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:micro_app_home/micro_app_home.dart';
@@ -24,13 +23,11 @@ class AppWidget extends StatefulWidget {
 class _AppWidgetState extends State<AppWidget> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'Micro Frontends',
       theme: ThemeData(primarySwatch: Colors.blue),
-      navigatorKey: navigatorKey,
-      onGenerateRoute: widget._baseApp.generateRoute,
-      initialRoute: '/login',
+      routerConfig: widget._baseApp.routerConfig,
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
@@ -38,10 +35,7 @@ class _AppWidgetState extends State<AppWidget> {
         MicroAppHomeLocalizations.delegate,
         MicroAppLoginLocalizations.delegate,
       ],
-      supportedLocales: const [
-        Locale('en'),
-        Locale('pt'),
-      ],
+      supportedLocales: const [Locale('en'), Locale('pt')],
     );
   }
 }

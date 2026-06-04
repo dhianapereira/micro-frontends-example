@@ -2,7 +2,7 @@
 
 This document describes the expected structure for adding a new micro app to this workspace.
 
-A micro app owns a focused product area. It exposes its routes through the `MicroApp` contract from `foundations`, keeps its own localized strings, and declares only the dependencies it directly uses.
+A micro app owns a focused product area. It exposes lifecycle hooks and routes through the `MicroApp` contract, keeps its own localized strings, and declares only the dependencies it directly uses.
 
 ## Folder Structure
 
@@ -60,6 +60,8 @@ dependencies:
     sdk: flutter
   foundations:
     path: ../../packages/foundations
+  navigation:
+    path: ../../packages/navigation
 
 dev_dependencies:
   flutter_test:
@@ -84,6 +86,7 @@ workspace:
   - base_app
   - packages/foundations
   - packages/event_bus
+  - packages/navigation
   - micro_apps/micro_app_home
   - micro_apps/micro_app_login
   - micro_apps/micro_app_example
@@ -97,16 +100,14 @@ dependencies:
     path: ../micro_apps/micro_app_example
 ```
 
-Finally, register it in `BaseApp.microApps`:
+Finally, register it in `BaseApp`:
 
 ```dart
-List<MicroApp> get microApps {
-  return [
-    MicroAppLogin(),
-    MicroAppHome(),
-    MicroAppExample(),
-  ];
-}
+final List<MicroApp> _microApps = [
+  MicroAppLogin(),
+  MicroAppHome(),
+  MicroAppExample(),
+];
 ```
 
 ## Public Export
@@ -120,35 +121,34 @@ export 'src/l10n/l10n.dart';
 
 This lets the shell app import the micro app and register its localization delegate without reaching into private implementation folders.
 
-## MicroApp Implementation
+## Micro App Implementation
 
-Implement the `MicroApp` contract from `foundations`:
+Implement `MicroApp`:
 
 ```dart
-import 'package:foundations/foundations.dart';
 import 'package:micro_app_example/src/configs/constants.dart';
 import 'package:micro_app_example/src/example_page.dart';
+import 'package:foundations/foundations.dart';
+import 'package:navigation/navigation.dart';
 
 class MicroAppExample implements MicroApp {
   @override
   String get microAppName => Constants.microAppName;
 
   @override
-  Map<String, WidgetBuilderArgs> get routes {
-    return {
-      '/example': (_, _) => const ExamplePage(),
-    };
-  }
+  List<AppRoute> get routes => [
+    AppRoute.page(path: '/example', builder: (_) => const ExamplePage()),
+  ];
 
   @override
   Future<void> injectionsRegister() async {}
 
   @override
-  void Function() get registerListener => () {};
+  void registerEventHandlers() {}
 }
 ```
 
-Keep route names explicit and stable. If the micro app needs setup later, use `injectionsRegister`; if it needs to react to app-level events, use `registerListener`.
+Keep route paths explicit and stable. `AppRouter` fails fast when two micro apps register the same path, so duplicated routes do not silently override each other. If the micro app needs setup later, use `injectionsRegister`; if it needs to react to app-level events that are not pure navigation, use `registerEventHandlers`. Navigation decisions triggered by app-level events should stay in the shell so route transitions remain centralized.
 
 ## Localization
 

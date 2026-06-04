@@ -6,12 +6,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text(
-          context.l10n.greetings('World'),
-        ),
-      ),
-    );
+    return Scaffold(body: Center(child: Text(context.l10n.greetings('World'))));
   }
 }
