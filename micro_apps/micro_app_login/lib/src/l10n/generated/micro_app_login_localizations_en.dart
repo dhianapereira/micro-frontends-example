@@ -10,4 +10,17 @@ class MicroAppLoginLocalizationsEn extends MicroAppLoginLocalizations {
 
   @override
   String get login => 'Login';
+
+  @override
+  String get forgotPassword => 'Forgot password?';
+
+  @override
+  String get forgotPasswordTitle => 'Forgot password';
+
+  @override
+  String get forgotPasswordDescription =>
+      'Use this page as an example of internal navigation inside the login micro app.';
+
+  @override
+  String get backToLogin => 'Back to login';
 }

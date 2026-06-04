@@ -1,8 +1,9 @@
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
+import 'package:navigation/src/app_navigator.dart';
 import 'package:navigation/src/app_route.dart';
 
-class AppRouter {
+class AppRouter implements AppNavigator {
   AppRouter({
     required AppRoute rootRoute,
     required Iterable<AppRoute> routes,
@@ -23,8 +24,24 @@ class AppRouter {
 
   RouterConfig<Object> get config => _router;
 
-  void go(String location) {
-    _router.go(location);
+  @override
+  void go(String location, {Object? extra}) {
+    _router.go(location, extra: extra);
+  }
+
+  @override
+  Future<T?> push<T extends Object?>(String location, {Object? extra}) {
+    return _router.push<T>(location, extra: extra);
+  }
+
+  @override
+  void pop<T extends Object?>([T? result]) {
+    _router.pop(result);
+  }
+
+  @override
+  bool canPop() {
+    return _router.canPop();
   }
 
   static List<AppRoute> _buildRoutes({

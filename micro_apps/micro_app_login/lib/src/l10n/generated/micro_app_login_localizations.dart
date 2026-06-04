@@ -106,6 +106,30 @@ abstract class MicroAppLoginLocalizations {
   /// In en, this message translates to:
   /// **'Login'**
   String get login;
+
+  /// Forgot password navigation button label.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot password?'**
+  String get forgotPassword;
+
+  /// Forgot password page title.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot password'**
+  String get forgotPasswordTitle;
+
+  /// Forgot password page description.
+  ///
+  /// In en, this message translates to:
+  /// **'Use this page as an example of internal navigation inside the login micro app.'**
+  String get forgotPasswordDescription;
+
+  /// Button label to return to the login page.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to login'**
+  String get backToLogin;
 }
 
 class _MicroAppLoginLocalizationsDelegate

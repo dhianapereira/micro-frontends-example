@@ -19,7 +19,10 @@ void main() {
 
   test('Should return correct routes', () {
     final routes = microApp.routes;
-    expect(routes, hasLength(1));
-    expect(routes.single.path, '/login');
+    expect(routes, hasLength(2));
+    expect(routes.map((route) => route.path), [
+      '/login',
+      '/login/forgot-password',
+    ]);
   });
 }
