@@ -72,20 +72,22 @@ jobs:
 
       - name: Test affected packages
         run: |
-          # Test only packages that have a test directory. Root workspace files
-          # trigger all package tests because dependency resolution or analysis
-          # options can affect the whole monorepo.
+          # --include-dependents can bring packages without tests into the
+          # affected set. The shell guard keeps those packages from failing with
+          # "Test directory not found".
+          test_command='if [ -d test ]; then flutter test --no-pub; else echo "Skipping tests: no test directory."; fi'
+
+          # Root workspace files trigger every package because dependency
+          # resolution or analysis options can affect the whole monorepo.
           if git diff --name-only "origin/${{ github.base_ref }}...HEAD" -- \
             pubspec.yaml \
             pubspec.lock \
             analysis_options.yaml | grep -q .; then
             dart run melos exec -c 1 --fail-fast \
-              --dir-exists=test \
-              -- flutter test --no-pub
+              -- "$test_command"
           else
             dart run melos exec -c 1 --fail-fast \
               --diff="origin/${{ github.base_ref }}...HEAD" \
               --include-dependents \
-              --dir-exists=test \
-              -- flutter test --no-pub
+              -- "$test_command"
           fi

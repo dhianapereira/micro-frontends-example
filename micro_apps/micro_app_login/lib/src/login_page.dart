@@ -1,5 +1,6 @@
 import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
+import 'package:micro_app_login/src/events/auth_success_event.dart';
 import 'package:micro_app_login/src/l10n/l10n.dart';
 
 class LoginPage extends StatelessWidget {
@@ -17,7 +18,7 @@ class LoginPage extends StatelessWidget {
             style: const TextStyle(color: Colors.white),
           ),
           onPressed: () {
-            EventBus.emit(EventType.authSuccess);
+            EventBus.emit(const AuthSuccessEvent());
           },
         ),
       ),

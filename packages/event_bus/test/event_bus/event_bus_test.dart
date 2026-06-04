@@ -2,6 +2,8 @@ import 'package:event_bus/event_bus.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'dart:async';
 
+class _FakeEvent extends Fake implements AppEvent {}
+
 void main() {
   test('Should verify that EventBus is really a singleton', () {
     final instance1 = EventBus();
@@ -10,7 +12,7 @@ void main() {
   });
 
   test('Should adds an event to the stream when emit is called', () async {
-    const event = EventType.authSuccess;
+    final event = _FakeEvent();
     final completer = Completer<void>();
     final subscription = EventBus.listen((receivedEvent) {
       expect(receivedEvent, event);
