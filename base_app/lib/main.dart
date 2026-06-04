@@ -4,10 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:micro_app_home/micro_app_home.dart';
 import 'package:micro_app_login/micro_app_login.dart';
 
-void main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
   final baseApp = BaseApp();
-  await baseApp.init();
   runApp(AppWidget(baseApp));
 }
 

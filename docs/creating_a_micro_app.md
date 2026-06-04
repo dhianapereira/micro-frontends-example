@@ -148,7 +148,7 @@ class MicroAppExample implements MicroApp {
 }
 ```
 
-Keep route paths explicit and stable. `AppRouter` fails fast when two micro apps register the same path, so duplicated routes do not silently override each other. If the micro app needs setup later, use `injectionsRegister`; if it needs to react to app-level events that are not pure navigation, use `registerEventHandlers`. Navigation decisions triggered by app-level events should stay in the shell so route transitions remain centralized.
+Keep route paths explicit and stable. The `/` route belongs to the shell splash page, so micro apps should register feature paths such as `/example`. `AppRouter` fails fast when two micro apps register the same path, so duplicated routes do not silently override each other. If the micro app needs setup later, use `injectionsRegister`; if it needs to react to app-level events that are not pure navigation, use `registerEventHandlers`. Navigation decisions triggered by app-level events should stay in the shell so route transitions remain centralized.
 
 ## Localization
 

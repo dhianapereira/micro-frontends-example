@@ -4,11 +4,20 @@ import 'package:foundations/foundations.dart';
 import 'package:micro_app_home/micro_app_home.dart';
 import 'package:micro_app_login/micro_app_login.dart';
 import 'package:navigation/navigation.dart';
+import 'package:base_app/src/splash_page.dart';
 
 class BaseApp {
   final List<MicroApp> _microApps = [MicroAppLogin(), MicroAppHome()];
 
-  late final AppRouter _appRouter = AppRouter(routes: _microAppRoutes);
+  Future<void>? _initializing;
+
+  late final AppRouter _appRouter = AppRouter(
+    rootRoute: AppRoute.page(
+      path: '/',
+      builder: (_) => SplashPage(onReady: _openInitialRoute),
+    ),
+    routes: _microAppRoutes,
+  );
 
   RouterConfig<Object> get routerConfig => _appRouter.config;
 
@@ -16,10 +25,15 @@ class BaseApp {
     return _microApps.expand((microApp) => microApp.routes).toList();
   }
 
-  Future<void> init() async {
+  Future<void> _init() async {
     await _registerInjections();
     _registerShellListeners();
     _registerMicroAppEventHandlers();
+  }
+
+  Future<void> _openInitialRoute() async {
+    await (_initializing ??= _init());
+    _appRouter.go('/login');
   }
 
   Future<void> _registerInjections() async {

@@ -3,19 +3,21 @@ import 'package:go_router/go_router.dart';
 import 'package:navigation/src/app_route.dart';
 
 class AppRouter {
-  AppRouter({required Iterable<AppRoute> routes, String initialLocation = '/'})
-    : _router = GoRouter(
-        initialLocation: initialLocation,
-        routes: [
-          GoRoute(path: '/', redirect: (_, _) => '/login'),
-          ..._deduplicatedRoutes(routes).map(
-            (route) => GoRoute(
-              path: route.path,
-              builder: (context, state) => route.builder(context, state),
-            ),
-          ),
-        ],
-      );
+  AppRouter({
+    required AppRoute rootRoute,
+    required Iterable<AppRoute> routes,
+    String initialLocation = '/',
+  }) : _router = GoRouter(
+         initialLocation: initialLocation,
+         routes: _buildRoutes(rootRoute: rootRoute, routes: routes)
+             .map(
+               (route) => GoRoute(
+                 path: route.path,
+                 builder: (context, state) => route.builder(context, state),
+               ),
+             )
+             .toList(),
+       );
 
   final GoRouter _router;
 
@@ -23,6 +25,17 @@ class AppRouter {
 
   void go(String location) {
     _router.go(location);
+  }
+
+  static List<AppRoute> _buildRoutes({
+    required AppRoute rootRoute,
+    required Iterable<AppRoute> routes,
+  }) {
+    if (rootRoute.path != '/') {
+      throw StateError('The root route must use the "/" path.');
+    }
+
+    return [rootRoute, ..._deduplicatedRoutes(routes)];
   }
 
   static List<AppRoute> _deduplicatedRoutes(Iterable<AppRoute> routes) {

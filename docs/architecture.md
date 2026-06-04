@@ -25,6 +25,7 @@ docs/
 It is responsible for:
 
 - registering micro apps;
+- owning the root `/` splash route;
 - composing routes exposed by micro apps into one router;
 - configuring the root `MaterialApp.router`;
 - registering localization delegates exported by micro apps;
@@ -50,7 +51,7 @@ Micro apps expose a `MicroApp` implementation with lifecycle hooks and route own
 
 `packages/foundations` contains shared contracts used across package boundaries. The main example is `MicroApp`.
 
-`packages/navigation` contains route contracts and the internal GoRouter setup. `AppRoute` lives here, while GoRouter stays hidden behind `AppRouter`. Packages that only need the route contract can import `package:navigation/app_route.dart`.
+`packages/navigation` contains route contracts and the internal GoRouter setup. `AppRoute` lives here, while GoRouter stays hidden behind `AppRouter`. Packages that only need the route contract can import `package:navigation/app_route.dart`. The shell owns `/`; micro apps should register feature paths such as `/login` or `/home`.
 
 `packages/event_bus` contains app-level event infrastructure. It allows micro apps to publish coarse-grained events without depending directly on the shell app.
 
@@ -81,7 +82,6 @@ packages/navigation
 
 packages/event_bus
   -> no app-specific packages
-
 ```
 
 Avoid dependencies from shared packages back into `base_app` or into specific micro apps.
