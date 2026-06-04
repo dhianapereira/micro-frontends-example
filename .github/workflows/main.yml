@@ -4,6 +4,23 @@ on:
   push:
     branches:
       - main
+    # Main should validate code entering the branch. Coverage badge updates and
+    # documentation-only changes do not need to start another coverage cycle.
+    paths:
+      - "base_app/**/*.dart"
+      - "base_app/pubspec.yaml"
+      - "base_app/analysis_options.yaml"
+      - "micro_apps/**/*.dart"
+      - "micro_apps/**/*.arb"
+      - "micro_apps/**/l10n.yaml"
+      - "micro_apps/**/pubspec.yaml"
+      - "micro_apps/**/analysis_options.yaml"
+      - "packages/**/*.dart"
+      - "packages/**/pubspec.yaml"
+      - "packages/**/analysis_options.yaml"
+      - "pubspec.yaml"
+      - "pubspec.lock"
+      - "analysis_options.yaml"
 
 permissions:
   contents: write
@@ -13,6 +30,8 @@ jobs:
   test-and-coverage:
     name: Test and update coverage
     runs-on: ubuntu-latest
+    # Extra guard for squash/merge commits created from the automated badge PR.
+    if: ${{ !contains(github.event.head_commit.message, 'docs: update coverage badge') }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
