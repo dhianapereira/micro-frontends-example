@@ -1,6 +1,6 @@
 # Micro Frontends Example
 
-![Coverage](https://img.shields.io/badge/coverage-79.28%25-yellowgreen)
+![Coverage](https://img.shields.io/badge/coverage-81.82%25-green)
 
 An example Flutter monorepo used to explore micro frontend architecture, package boundaries, Melos workflows, localizations, and shared infrastructure.
 
