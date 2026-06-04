@@ -35,6 +35,7 @@ jobs:
       - name: Create coverage badge pull request
         uses: peter-evans/create-pull-request@v7
         with:
+          token: ${{ secrets.CI_BOT_TOKEN }}
           branch: ci/update-coverage-badge
           delete-branch: true
           commit-message: "docs: update coverage badge"
